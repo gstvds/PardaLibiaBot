@@ -136,14 +136,11 @@ app.listen(port, host, function () {
 
   bot.onText(/\/contas/, msg => {
     const dueDate = 
-      "Dia 05 - Aluguel\n\nDia 05 - Condomínio\n\nDia 05 - Internet\n\nDia 10 - Água\n\nDia 20 - Energia";
+      "<b>Dia 05:</b>\n Aluguel, Condomínio, Internet\n\n<b>Dia 10:</b>\n Água\n\n<b>Dia 20:  </b>\n Energia";
     bot.sendMessage(
       msg.chat.id,
       dueDate,
+      { parse_mode: "HTML" }
     )
   })
-})
-
-module.exports = {
-  getToken
-}
+});

@@ -1,6 +1,6 @@
 const Splitwise = require('splitwise');
 const {
-  PL_CHAT,
+  PL_SPLT,
   LIBIA_ID,
   PARDAL_ID,
   consumerKey,
@@ -16,7 +16,7 @@ module.exports = {
       accessToken
     });
 
-    const group = await sw.getGroup({ id: PL_CHAT });
+    const group = await sw.getGroup({ id: PL_SPLT });
     let balance = '';
 
     group.members.map(member => {
@@ -45,7 +45,7 @@ module.exports = {
       accessToken,
     });
 
-    const group = await sw.getGroup({ id: PL_CHAT });
+    const group = await sw.getGroup({ id: PL_SPLT });
     let balance = 1000;
     let user = null;
 
