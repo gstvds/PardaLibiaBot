@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-telegram-bot-api": "^0.40.0",
+    "splitwise": "^1.0.0"
+  }
+}
