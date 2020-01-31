@@ -1,0 +1,14 @@
+service: default
+runtime: nodejs10
+manual_scaling:
+  instances: 1
+
+env_variables:
+  consumerKey: "G50a3U1C4Y5svqAE3jK5zmTT9BLlC4FYRzbGT1CQ"
+  consumerSecret: "gd9vQS1e7sGz3gIOddEeu8VHI8QV2EgPPnzZrVhP"
+  accessToken: "WCptxSr482Kml84iUD41Pk2ejJgOu0J9jcNbq1kI"
+  BOT_TOKEN: "999255525:AAGpwp5AXEU1BsoZsMgRzCdLikg4UdNMny0"
+  PL_SPLT: "11836719"
+  PL_Chat: "329960397"
+  LIBIA_ID: "21765458"
+  PARDAL_ID: "22043093"
