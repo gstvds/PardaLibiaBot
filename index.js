@@ -1,5 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-const { BOT_TOKEN, PL_CHAT, LIBIA_ID, PARDAL_ID, PL_SPLT } = require('./config');
+const { BOT_TOKEN, PL_CHAT } = require('./config');
 const bot = new TelegramBot(BOT_TOKEN, { polling: true });
 
 const notifications = require('./notifications');
@@ -18,14 +18,17 @@ paidExpenses = {
   condominium: false,
 }
 
-splitwise = {
-  from: null,
-  to: null,
-  amount: null,
-  description: null,
-  group_id: null,
-  creation_method: null,
-}
+// splitwise = {
+//   from: null,
+//   to: null,
+//   cost: null,
+//   description: null,
+//   group_id: null,
+//   users: [
+//     { user_id: null, paid_share: null, owed_share: null },
+//     { user_id: null, paid_share: null, owed_share: null },
+//   ]
+// }
 
 let payer = '';
 
@@ -126,8 +129,7 @@ app.listen(port, host, function () {
         reply_markup: {
           keyboard: [["Água", "Internet"], ["Energia", "Condomínio"], ["Aluguel"]]
         }
-      }
-      );
+    });
     } else {
       message = "Oi, estranho. Eu eu sou o pai do Libia e, apesar de ter saído pra comprar cigarro e esquecido o caminho de volta, infelizmente só posso ajudar ele. Mas não fique triste! Se quiser, chama ele para conversar sobre mim => @gstvds";
       bot.sendMessage(
@@ -141,44 +143,6 @@ app.listen(port, host, function () {
       );
     }
   });
-
-  bot.onText(/\/pagar(.*)/, async (msg, match) => {
-    if (msg.chat.id === 329960397 || msg.chat.id === 280701057) {
-      let message = '';
-      if (match[1] === '') {
-        message = "Para pagar, selecione o valor. Para isso, digite /pagar &lt;valor&gt;";
-      } else {
-        if (msg.text.indexOf("Libia") !== -1) {
-          splitwise.from = LIBIA_ID;
-          splitwise.to = PARDAL_ID;
-        } else if (msg.text.indexOf("Pardal") !== -1) {
-          splitwise.from = PARDAL_ID;
-          splitwise.to = LIBIA_ID;
-        }
-        const textArray = msg.text.split(' ');
-        splitwise.amount = textArray[2];
-        splitwise.description = textArray[3];
-        splitwise.group_id = PL_SPLT;
-        splitwise.creation_method = "split";
-        // TODO: Verificar como fazer para dividir a conta igualmente
-        let message = await balance.createDebt(splitwise);
-        
-        bot.sendMessage(msg.chat.id, message, { parse_mode: "HTML" });
-      }
-    } else {
-      message = "Oi, estranho. Eu eu sou o pai do Libia e, apesar de ter saído pra comprar cigarro e esquecido o caminho de volta, infelizmente só posso ajudar ele. Mas não fique triste! Se quiser, chama ele para conversar sobre mim => @gstvds";
-      bot.sendMessage(
-        msg.chat.id,
-        message,
-      );
-      message = `Parece que alguém tentou usar o bot! ${msg.chat.username}`;
-      bot.sendMessage(
-        280701057,
-        message,
-      );
-    }
-  }
-  )
 
   bot.on("message", msg => {
     if (msg.chat.id === 329960397 || msg.chat.id === 280701057) {

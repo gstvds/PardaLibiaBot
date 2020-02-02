@@ -68,25 +68,39 @@ module.exports = {
     return `Maior saldo devedor: ${user} (deve ${Math.abs(balance).toFixed(2)} reais)`;
   },
 
-  createDebt: async splitwise => {
-    const sw = Splitwise({
-      consumerKey,
-      consumerSecret,
-      accessToken,
-    })
+  /**
+   * @deprecated Not working
+   */
+  // createDebt: async splitwise => {
+  //   const sw = Splitwise({
+  //     consumerKey,
+  //     consumerSecret,
+  //     accessToken,
+  //   })
 
-    let data = ''
+  //   let data = ''
 
-    const response = await sw.createDebt({
-      from: splitwise.from,
-      to: splitwise.to,
-      amount: splitwise.amount,
-      description: splitwise.description,
-      group_id: splitwise.group_id,
-      creation_method: splitwise.creation_method,
-    })
+  //   const response = await sw.createDebt({
+  //     from: splitwise.from,
+  //     to: splitwise.to,
+  //     cost: splitwise.cost,
+  //     description: splitwise.description,
+  //     group_id: splitwise.group_id,
+  //     users: [
+  //       {
+  //         user_id: splitwise.users[0].user_id,
+  //         paid_share: splitwise.users[0].paid_share,
+  //         owed_share: splitwise.users[0].owed_share,
+  //       },
+  //       {
+  //         user_id: splitwise.users[1].user_id,
+  //         paid_share: splitwise.users[1].paid_share,
+  //         owed_share: splitwise.users[1].owed_share,
+  //       },
+  //     ]
+  //   })
 
-    data = `Retorno ${JSON.stringify(response)}`
-    return data
-  }
+  //   data = `Retorno ${JSON.stringify(response)}`
+  //   return data
+  // }
 };
