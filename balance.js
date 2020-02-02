@@ -66,5 +66,27 @@ module.exports = {
       }
     });
     return `Maior saldo devedor: ${user} (deve ${Math.abs(balance).toFixed(2)} reais)`;
+  },
+
+  createDebt: async splitwise => {
+    const sw = Splitwise({
+      consumerKey,
+      consumerSecret,
+      accessToken,
+    })
+
+    let data = ''
+
+    const response = await sw.createDebt({
+      from: splitwise.from,
+      to: splitwise.to,
+      amount: splitwise.amount,
+      description: splitwise.description,
+      group_id: splitwise.group_id,
+      creation_method: splitwise.creation_method,
+    })
+
+    data = `Retorno ${JSON.stringify(response)}`
+    return data
   }
 };
